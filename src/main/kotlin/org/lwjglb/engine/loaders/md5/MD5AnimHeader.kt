@@ -1,5 +1,7 @@
 package org.lwjglb.engine.loaders.md5
 
+import java.util.regex.Pattern
+
 class MD5AnimHeader {
     var version: String? = null
     var commandLine: String? = null
@@ -15,6 +17,8 @@ class MD5AnimHeader {
     }
 
     companion object {
+        private val spaceRegex : Pattern = Pattern.compile("\\s+")
+
         @Throws(Exception::class)
         fun parse(lines: List<String?>?): MD5AnimHeader {
             val header = MD5AnimHeader()
@@ -26,7 +30,7 @@ class MD5AnimHeader {
             var i = 0
             while (i < numLines && !finishHeader) {
                 val line = lines!![i]
-                val tokens = line!!.split("\\s+").toTypedArray()
+                val tokens = line!!.split(spaceRegex).toTypedArray()
                 if (tokens.size > 1) {
                     val paramName = tokens[0]
                     val paramValue = tokens[1]

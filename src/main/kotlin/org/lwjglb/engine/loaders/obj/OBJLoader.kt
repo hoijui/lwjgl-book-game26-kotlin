@@ -7,8 +7,11 @@ import org.lwjglb.engine.graph.InstancedMesh
 import org.lwjglb.engine.graph.Material
 import org.lwjglb.engine.graph.Mesh
 import java.util.*
+import java.util.regex.Pattern
 
 object OBJLoader {
+
+    private val spaceRegex : Pattern = Pattern.compile("\\s+")
 
     @JvmOverloads
     @Throws(Exception::class)
@@ -20,7 +23,7 @@ object OBJLoader {
         val normals: MutableList<Vector3f> = ArrayList()
         val faces: MutableList<Face> = ArrayList()
         for (line in lines) {
-            val tokens = line.split("\\s+").toTypedArray()
+            val tokens = line.split(spaceRegex).toTypedArray()
             when (tokens[0]) {
                 "v" -> {
                     // Geometric vertex
