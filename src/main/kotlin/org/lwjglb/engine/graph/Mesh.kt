@@ -121,6 +121,10 @@ open class Mesh @JvmOverloads constructor(
     }
 
     init {
+        if (vertexCount <= 0) {
+            throw IllegalArgumentException("No vertices supplied")
+        }
+
         var posBuffer: FloatBuffer? = null
         var textCoordinatesBuffer: FloatBuffer? = null
         var vecNormalsBuffer: FloatBuffer? = null
