@@ -134,7 +134,7 @@ object OBJLoader {
                 // It can be empty if the obj does not define text coordinates
                 val textCoord = lineTokens[1]
                 idxGroup.idxTextCoord = if (textCoord.isNotEmpty()) textCoord.toInt() - 1 else IdxGroup.NO_VALUE
-                if (length > 2) {
+                if (length > 2 && lineTokens[2].isNotEmpty()) {
                     idxGroup.idxVecNormal = lineTokens[2].toInt() - 1
                 }
             }
