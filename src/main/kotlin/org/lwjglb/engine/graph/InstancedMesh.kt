@@ -9,14 +9,14 @@ import kotlin.math.min
 
 class InstancedMesh(
     positions: FloatArray,
-    textCoords: FloatArray?,
+    textCoordinates: FloatArray?,
     normals: FloatArray?,
     indices: IntArray?,
     private val numInstances: Int,
     material: Material)
     : Mesh(
     positions,
-    textCoords,
+    textCoordinates,
     normals,
     indices,
     createEmptyIntArray(

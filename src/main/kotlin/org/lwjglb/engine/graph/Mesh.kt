@@ -20,11 +20,11 @@ open class Mesh @JvmOverloads constructor(
             MAX_WEIGHTS * positions!!.size / 3,
             0f
         ),
-        val material: Material
-) {
+        val material: Material)
+{
     var vaoId = 0
     protected var vboIdList: MutableList<Int> = ArrayList()
-    var vertexCount = 0
+    val vertexCount = indices!!.size
     var boundingRadius = 0f
 
     protected fun initRender() {
@@ -128,7 +128,6 @@ open class Mesh @JvmOverloads constructor(
         var jointIndicesBuffer: IntBuffer? = null
         var indicesBuffer: IntBuffer? = null
         try {
-            vertexCount = indices!!.size
             vaoId = GL30.glGenVertexArrays()
             GL30.glBindVertexArray(vaoId)
 
@@ -190,7 +189,7 @@ open class Mesh @JvmOverloads constructor(
             // Index VBO
             vboId = GL15.glGenBuffers()
             vboIdList.add(vboId)
-            indicesBuffer = MemoryUtil.memAllocInt(indices.size)
+            indicesBuffer = MemoryUtil.memAllocInt(vertexCount)
             indicesBuffer.put(indices).flip()
             GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboId)
             GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indicesBuffer!!, GL15.GL_STATIC_DRAW)

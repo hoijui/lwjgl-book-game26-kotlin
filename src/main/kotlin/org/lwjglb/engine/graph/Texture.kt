@@ -60,10 +60,8 @@ class Texture {
             width = w.get()
             height = h.get()
         }
-        id = createTexture(buf)
-        if (buf != null) {
-            STBImage.stbi_image_free(buf!!)
-        }
+        id = createTexture(buf!!)
+        STBImage.stbi_image_free(buf!!)
     }
 
     constructor(fileName: String, numCols: Int, numRows: Int) : this(fileName) {
@@ -84,13 +82,11 @@ class Texture {
             width = w.get()
             height = h.get()
         }
-        id = createTexture(buf)
-        if (buf != null) {
-            STBImage.stbi_image_free(buf!!)
-        }
+        id = createTexture(buf!!)
+        STBImage.stbi_image_free(buf!!)
     }
 
-    private fun createTexture(buf: ByteBuffer?): Int {
+    private fun createTexture(buf: ByteBuffer): Int {
         // Create a new OpenGL texture
         val textureId = GL11.glGenTextures()
         // Bind the texture

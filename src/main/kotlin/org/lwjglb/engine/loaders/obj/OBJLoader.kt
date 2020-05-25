@@ -89,11 +89,13 @@ object OBJLoader {
     }
 
     private fun processFaceVertex(
-        indices: IdxGroup?, textCoordList: List<Vector2f>,
-        normList: List<Vector3f>, indicesList: MutableList<Int>,
-        texCoordArr: FloatArray, normArr: FloatArray
-    ) {
-
+        indices: IdxGroup?,
+        textCoordList: List<Vector2f>,
+        normList: List<Vector3f>,
+        indicesList: MutableList<Int>,
+        texCoordArr: FloatArray,
+        normArr: FloatArray)
+    {
         // Set index for vertex coordinates
         val posIndex = indices!!.idxPos
         indicesList.add(posIndex)
@@ -114,17 +116,19 @@ object OBJLoader {
     }
 
     private class Face(v1: String, v2: String, v3: String) {
+
         /**
          * List of idxGroup groups for a face triangle (3 vertices per face).
          */
         var faceVertexIndices = arrayOfNulls<IdxGroup>(3)
+
         private fun parseLine(line: String): IdxGroup {
             val idxGroup = IdxGroup()
             val lineTokens = line.split("/").toTypedArray()
             val length = lineTokens.size
             idxGroup.idxPos = lineTokens[0].toInt() - 1
             if (length > 1) {
-                // It can be empty if the obj does not define text coords
+                // It can be empty if the obj does not define text coordinates
                 val textCoord = lineTokens[1]
                 idxGroup.idxTextCoord = if (textCoord.isNotEmpty()) textCoord.toInt() - 1 else IdxGroup.NO_VALUE
                 if (length > 2) {
