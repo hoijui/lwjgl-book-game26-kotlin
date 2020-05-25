@@ -79,10 +79,8 @@ class DummyGame : IGameLogic {
             height = h.get()
         }
         val instances = height * width
-//        val texture = Texture("textures/terrain_textures.png", 2, 1)
-        val texture : Texture? = null // XXX debug only
-//        val material = Material(texture, reflectance)
-        val material = Material() // XXX debug only
+        val texture = Texture("textures/terrain_textures.png", 2, 1)
+        val material = Material(texture, reflectance)
         val mesh = OBJLoader.loadMesh("/models/cube.obj", instances, material)
         mesh.boundingRadius = 1f
         gameItems.clear()
@@ -289,12 +287,7 @@ class DummyGame : IGameLogic {
             val lightDirection = Vector3f(0.0f, 1.0f, 1.0f)
             val directionalLight = DirectionalLight(Vector3f(1.0f, 1.0f, 1.0f), lightDirection, lightIntensity)
 
-            val sceneLight = SceneLight(ambientLight, skyBoxLight, directionalLight)
-            sceneLight.pointLightList.add(PointLight(
-                    Vector3f(1.0f, 1.0f, 1.0f),
-                    Vector3f(0.0f, 10.0f, 0.0f),
-                    99999.0f)) // XXX debug only!
-            return sceneLight
+            return SceneLight(ambientLight, skyBoxLight, directionalLight)
         }
     }
 }
