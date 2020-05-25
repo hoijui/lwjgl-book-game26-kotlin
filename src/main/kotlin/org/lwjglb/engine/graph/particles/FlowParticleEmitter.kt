@@ -4,22 +4,16 @@ import org.joml.Vector3f
 import org.lwjglb.engine.items.GameItem
 import java.util.*
 
-class FlowParticleEmitter(baseParticle: Particle, maxParticles: Int, creationPeriodMillis: Long) :
-    IParticleEmitter {
-    var maxParticles: Int
-    var active: Boolean
-    override val particles: MutableList<GameItem>
-    override val baseParticle: Particle
-    var creationPeriodMillis: Long
-    private var lastCreationTime: Long
-    var speedRndRange = 0f
-    var positionRndRange = 0f
-    var scaleRndRange = 0f
+class FlowParticleEmitter(override val baseParticle: Particle, private val maxParticles: Int, private val creationPeriodMillis: Long) :
+    IParticleEmitter
+{
+    var active: Boolean = false
+    override val particles: MutableList<GameItem> = ArrayList()
+    private var lastCreationTime: Long = 0
+    var speedRndRange = 0.0f
+    var positionRndRange = 0.0f
+    private var scaleRndRange = 0.0f
     private var animRange: Long = 0
-
-//    override fun getParticles(): List<GameItem> {
-//        return particles
-//    }
 
     fun setAnimRange(animRange: Long) {
         this.animRange = animRange
@@ -48,7 +42,7 @@ class FlowParticleEmitter(baseParticle: Particle, maxParticles: Int, creationPer
 
     private fun createParticle() {
         val particle = Particle(baseParticle)
-        // Add a little bit of randomness of the parrticle
+        // Add a little bit of randomness of the particle
         val sign = if (Math.random() > 0.5) -1.0f else 1.0f
         val speedInc = sign * Math.random().toFloat() * speedRndRange
         val posInc = sign * Math.random().toFloat() * positionRndRange
@@ -66,7 +60,7 @@ class FlowParticleEmitter(baseParticle: Particle, maxParticles: Int, creationPer
      * @param particle The particle to update
      * @param elapsedTime Elapsed time in milliseconds
      */
-    fun updatePosition(particle: Particle, elapsedTime: Long) {
+    private fun updatePosition(particle: Particle, elapsedTime: Long) {
         val speed = particle.speed
         val delta = elapsedTime / 1000.0f
         val dist = Vector3f(
@@ -80,14 +74,5 @@ class FlowParticleEmitter(baseParticle: Particle, maxParticles: Int, creationPer
         for (particle in particles) {
             particle.cleanup()
         }
-    }
-
-    init {
-        particles = ArrayList()
-        this.baseParticle = baseParticle
-        this.maxParticles = maxParticles
-        active = false
-        lastCreationTime = 0
-        this.creationPeriodMillis = creationPeriodMillis
     }
 }
