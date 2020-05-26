@@ -171,7 +171,6 @@ class Renderer {
 
         // Render each mesh with the associated game Items
         val mapMeshes = scene.gameMeshes
-//        System.err.println("XXX #mapMeshes (non-instanced): ${mapMeshes.size}")
         for (mesh in mapMeshes.keys) {
             sceneShaderProgram!!.setUniform("material", mesh.material)
             val text = mesh.material.texture
@@ -180,7 +179,6 @@ class Renderer {
                 sceneShaderProgram!!.setUniform("numRows", text.numRows)
             }
             shadowRenderer!!.bindTextures(GL13.GL_TEXTURE2)
-//            System.err.println("XXX mesh (non-instanced) #gameItems: ${mapMeshes[mesh]?.size}")
             mesh.renderList(mapMeshes[mesh]) { gameItem: GameItem ->
                 sceneShaderProgram!!.setUniform("selectedNonInstanced", if (gameItem.isSelected) 1.0f else 0.0f)
                 val modelMatrix = transformation.buildModelMatrix(gameItem)
@@ -198,7 +196,6 @@ class Renderer {
 
         // Render each mesh with the associated game Items
         val mapMeshes = scene.gameInstancedMeshes
-//        System.err.println("XXX #mapMeshes (instanced): ${mapMeshes.size}")
         for (mesh in mapMeshes.keys) {
             val material = mesh.material
             val text = material.texture
@@ -208,7 +205,6 @@ class Renderer {
             }
             sceneShaderProgram!!.setUniform("material", material)
             filteredItems.clear()
-//            System.err.println("XXX mesh (instanced) #gameItems: ${mapMeshes[mesh]?.size}")
             mapMeshes[mesh]?.forEach { gameItem ->
                 if (gameItem.isInsideFrustum) {
                     filteredItems.add(gameItem)

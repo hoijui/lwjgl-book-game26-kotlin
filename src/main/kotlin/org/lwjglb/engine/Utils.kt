@@ -16,10 +16,7 @@ object Utils {
     fun loadResource(fileName: String): String {
         Utils::class.java.getResourceAsStream(fileName).use { res ->
             Scanner(res, StandardCharsets.UTF_8.name()).use { scanner ->
-//                return scanner.useDelimiter("\\A").next()
-                val resStr: String = scanner.useDelimiter("\\A").next()
-//                System.err.println("\n\nXXX res '$fileName': '$resStr'")
-                return resStr
+                return scanner.useDelimiter("\\A").next()
             }
         }
     }
@@ -27,15 +24,13 @@ object Utils {
     @Throws(Exception::class)
     fun readAllLines(fileName: String): List<String> {
 
-        val lines = BufferedReader(
+        return BufferedReader(
                 InputStreamReader(
                         Class.forName(Utils::class.java.name).getResourceAsStream(fileName)
                 )
         )
                 .lineSequence()
                 .toCollection(ArrayList())
-//        System.err.println("\n\nXXX res lines '$fileName': '$lines'")
-        return lines
     }
 
     fun listIntToArray(list: List<Int>): IntArray {
@@ -53,7 +48,9 @@ object Utils {
 
     fun existsResourceFile(fileName: String): Boolean {
         try {
-            Utils::class.java.getResourceAsStream(fileName).use { res -> return res != null }
+            Utils::class.java.getResourceAsStream(fileName).use { res ->
+                return res != null
+            }
         } catch (excp: Exception) {
             return false
         }

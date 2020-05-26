@@ -9,7 +9,6 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         try {
-            Configuration.DEBUG.set(true) // XXX for debugging only
             val vSync = true
             val gameLogic: IGameLogic = DummyGame()
             val opts = WindowOptions()
