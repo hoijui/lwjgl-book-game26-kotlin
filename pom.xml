@@ -89,29 +89,7 @@ Almost working Kotlin conversion of chapter 26 of the LWJGL Book
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-ext</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-			<scope>runtime</scope>
-		</dependency>
-		-->
+
 		<dependency>
 			<groupId>org.lwjgl</groupId>
 			<artifactId>lwjgl</artifactId>
@@ -124,11 +102,6 @@ Almost working Kotlin conversion of chapter 26 of the LWJGL Book
 			<groupId>org.lwjgl</groupId>
 			<artifactId>lwjgl-stb</artifactId>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.lwjgl</groupId>
-			<artifactId>lwjgl3-demos</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>-->
 		<dependency>
 			<groupId>org.lwjgl</groupId>
 			<artifactId>lwjgl-cuda</artifactId>
@@ -407,10 +380,6 @@ Almost working Kotlin conversion of chapter 26 of the LWJGL Book
 						<version>${kotlin.version}</version>
 					</dependency>
 				</dependencies>
-				<!--<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>-->
 			</plugin>
 
 			<plugin>
