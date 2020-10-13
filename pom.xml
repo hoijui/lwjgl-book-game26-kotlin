@@ -8,7 +8,7 @@
 		<kotlin.version>1.3.72</kotlin.version>
 		<kotlin.code.style>official</kotlin.code.style>
 		<serialization.version>0.14.0</serialization.version>
-		<junit.version>4.13</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<project.mainClass>org.lwjglb.game.Main</project.mainClass>
 		<lwjgl.version>3.2.3</lwjgl.version>
 		<joml.version>1.9.24</joml.version>
